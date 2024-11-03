@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách hợp đồng</title>
+
+    <style>
+        /* CSS tổng quan */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 95%;
+            margin: auto;
+            padding: 20px;
+        }
+
+        /* Thanh điều hướng */
+        nav ul {
+            display: flex;
+            justify-content: space-around;
+            background-color: #333;
+            padding: 10px;
+            margin: 0;
+        }
+
+        nav ul li {
+            list-style: none;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #575757;
+        }
+
+        /* Tiêu đề */
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+            margin-top: 40px;
+
+        }
+
+        /* Bảng */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 7px;
+        }
+
+        table td, table th {
+            word-wrap: break-word;
+            max-width: 200px;
+            text-align: left;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table th {
+            background-color: #66CC66;
+        }
+
+        table tr:hover {
+            background-color: #f2f2f2;
+            cursor: pointer;
+        }
+
+        /* Tìm kiếm */
+        #search-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+            margin-right:50px;
+        }
+
+        #search-container input {
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width:300px;
+            margin-right: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        #search-container button {
+            padding: 8px 16px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+
+        }
+
+        /* Nút thêm và sắp xếp */
+        .button-group {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 20px;
+
+        }
+
+        .add-button {
+            padding: 8px 16px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+<!--        .dropdown {-->
+<!--            position: relative;-->
+<!--            display: inline-block;-->
+<!--            margin-right:500px;-->
+<!--        }-->
+
+<!--        .dropdown button {-->
+<!--            padding: 8px 16px;-->
+<!--            background-color: #28a745;-->
+<!--            color: white;-->
+<!--            border: none;-->
+<!--            border-radius: 4px;-->
+<!--            cursor: pointer;-->
+<!--        }-->
+
+<!--        .dropdown-content {-->
+<!--            display: none;-->
+<!--            position: absolute;-->
+<!--            background-color: #f1f1f1;-->
+<!--            min-width: 160px;-->
+<!--            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);-->
+<!--            z-index: 1;-->
+<!--        }-->
+
+<!--        .dropdown-content a {-->
+<!--            color: black;-->
+<!--            padding: 12px 1px;-->
+<!--            text-decoration: none;-->
+<!--            display: block;-->
+<!--            font-size:14px;-->
+<!--        }-->
+
+<!--        .dropdown-content a:hover {-->
+<!--            background-color: #ddd;-->
+<!--        }-->
+
+<!--        .dropdown:hover .dropdown-content {-->
+<!--            display: block;-->
+<!--        }-->
+
+        /* Phân trang */
+        #pagination {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        #pagination button {
+            padding: 8px 16px;
+            margin: 0 5px;
+            border-radius: 4px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+<!--        .sort-button {-->
+<!--            background: none;-->
+<!--            border: none;-->
+<!--            cursor: pointer;-->
+<!--            font-size: 14px;-->
+<!--            margin-left: 5px;-->
+<!--            color: #333;-->
+<!--            padding: 0;-->
+<!--        }-->
+<!--        .sort-button:hover {-->
+<!--            color: #28a745;-->
+<!--        }-->
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">Thống kê</a></li>
+                <li><a href="#">Danh sách nhà</a></li>
+                <li><a href="#">Phòng</a></li>
+                <li><a href="#">Khách thuê</a></li>
+                <li><a href="#">Tài chính</a></li>
+                <li><a href="#">Điện nước</a></li>
+                <li><a href="#">Báo cáo</a></li>
+                <li><a href="#">Cài đặt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Danh sách hợp đồng</h1>
+
+        <div id="search-container">
+            <form action="/contract" method="get">
+                <input type="text" name="keyword" placeholder="Tìm kiếm hợp đồng...">
+                <button type="submit">Tìm kiếm</button>
+            </form>
+        </div>
+
+        <div class="button-group">
+            <a href="/contract/create">
+                <button class="add-button">Thêm hợp đồng</button>
+            </a>
+<!--            <div class="dropdown">-->
+<!--                <button>Sắp xếp</button>-->
+<!--                <div class="dropdown-content">-->
+<!--                    <a href="/contract?sort=registration_date">Theo ngày đăng ký</a>-->
+<!--                    <a href="/contract?sort=price">Theo giá thuê</a>-->
+<!--                </div>-->
+<!--            </div>-->
+        </div>
+
+        <table>
+            <thead>
+            <tr>
+                <th>STT</th>
+                <th>Mã hợp đồng</th>
+                <th>
+                    Ngày bắt đầu
+                    <button class="sort-button" onclick="sortTable(2, 'date')">⇅</button>
+                </th>
+                <th>Ngày kết thúc</th>
+                <th>Nhà</th>
+                <th>Phòng</th>
+                <th>
+                    Giá thuê
+                    <button class="sort-button" onclick="sortTable(6, 'number')">⇅</button>
+                </th>
+                <th>Đặt cọc</th>
+                <th>Người ký</th>
+                <th>Mô tả</th>
+                <th>Hành động</th>
+            </tr>
+            </thead>
+            <tbody id="table-body">
+            <tr>
+                <td>1</td>
+                <td>HD001</td>
+                <td>2024-01-01</td>
+                <td>2024-12-31</td>
+                <td>Nhà A</td>
+                <td>Phòng 101</td>
+                <td>10000000</td>
+                <td>5000000</td>
+                <td>Nguyễn Văn A</td>
+                <td>Hợp đồng mẫu</td>
+                <td>
+                    <a href="/contract/update/HD001">
+                        <button class="edit-button">Sửa</button>
+                    </a>
+                    <form action="/contract/delete/HD001" method="post" style="display:inline;">
+                        <button type="submit" class="delete-button" onclick="return confirm('Bạn có chắc muốn xóa hợp đồng này?');">Xóa</button>
+                    </form>
+                </td>
+            </tr>
+            <!-- Thêm các hàng dữ liệu khác -->
+            </tbody>
+        </table>
+
+
+        <div id="pagination">
+            <button disabled><</button>
+            <button>></button>
+        </div>
+    </main>
+</div>
+</body>
+<script>
+    function sortTable(columnIndex, dataType) {
+        const tableBody = document.getElementById("table-body");
+        const rows = Array.from(tableBody.querySelectorAll("tr"));
+
+        const sortedRows = rows.sort((rowA, rowB) => {
+            const cellA = rowA.children[columnIndex].innerText.trim();
+            const cellB = rowB.children[columnIndex].innerText.trim();
+
+            if (dataType === "date") {
+                return new Date(cellA) - new Date(cellB);
+            } else if (dataType === "number") {
+                return parseFloat(cellA) - parseFloat(cellB);
+            } else {
+                return cellA.localeCompare(cellB);
+            }
+        });
+
+        // Xóa các hàng cũ
+        tableBody.innerHTML = "";
+
+        // Thêm hàng đã sắp xếp
+        sortedRows.forEach(row => tableBody.appendChild(row));
+    }
+</script>
+</html>
+
