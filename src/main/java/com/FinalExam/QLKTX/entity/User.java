@@ -1,8 +1,7 @@
 package com.FinalExam.QLKTX.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Collection;
 import java.util.List;
@@ -10,6 +9,10 @@ import java.util.List;
 @Entity
 @Setter
 @Getter
+@Table(name = "users")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class User{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,6 +21,9 @@ public class User{
 
     @Column(name = "username")
     private String username;
+
+    @Column(name = "password")
+    private String password;
 
     @Column(name = "avatar")
     private String avatar;
