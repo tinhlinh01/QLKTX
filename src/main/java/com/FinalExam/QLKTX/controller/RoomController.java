@@ -30,7 +30,7 @@ public class RoomController {
         return roomService.updateRoom(request);
     }
 
-    @DeleteMapping("/Delete")
+    @DeleteMapping("/delete")
     private String delete(@RequestParam("id") int id){
         return roomService.deleteRoom(id);
     }

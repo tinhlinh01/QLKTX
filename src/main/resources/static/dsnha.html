@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh Sách Nhà</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Đảm bảo đường dẫn đến file CSS chung -->
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">Thống kê</a></li>
+                <li><a href="./dsnha.html">Danh sách nhà</a></li>
+                <li><a href="./room.html">Phòng</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle">Khách thuê</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="./hopdong.html">Danh sách hợp đồng</a></li>
+                        <li><a href="./khachthue.html">Danh sách khách thuê</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <div class="row mt-4">
+            <div class="col-12">
+                <h3 class="text-center">Danh sách nhà</h3>
+            </div>
+        </div>
+
+        <!-- Search bar and Add button -->
+        <div id="search-container">
+            <form>
+                <input type="text" name="homeSreach" placeholder="Tìm kiếm nhà...">
+                <button type="submit">Tìm kiếm</button>
+            </form>
+        </div>
+
+        <div class="button-group">
+            <a href="/create">
+                <button class="add-button">Thêm hợp đồng</button>
+            </a>
+<!--            <div class="dropdown">-->
+<!--                <button>Sắp xếp</button>-->
+<!--                <div class="dropdown-content">-->
+<!--                    <a href="/contract?sort=registration_date">Theo ngày đăng ký</a>-->
+<!--                    <a href="/contract?sort=price">Theo giá thuê</a>-->
+<!--                </div>-->
+<!--            </div>-->
+        </div>
+
+        <!-- Table -->
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Tên nhà</th>
+                        <th>Số phòng</th>
+                        <th>Số giường</th>
+                        <th>Chỗ trống</th>
+                        <th>Địa chỉ</th>
+                        <th>Chủ sở hữu</th>
+                        <th>CMTND</th>
+                        <th>Số điện thoại</th>
+                        <th>Email</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Dữ liệu của nhà sẽ được thêm vào đây -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pagination -->
+        <div id="pagination">
+            <button disabled></button>
+            <button>></button>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Hệ Thống Quản Lý. All rights reserved.</p>
+    </footer>
+</body>
+</html>

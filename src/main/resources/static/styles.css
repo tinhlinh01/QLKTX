@@ -1,0 +1,196 @@
+        /* CSS tổng quan */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 95%;
+            margin: auto;
+            padding: 20px;
+        }
+
+        /* Thanh điều hướng */
+        nav ul {
+            display: flex;
+            justify-content: space-around;
+            background-color: #333;
+            padding: 10px;
+            margin: 0;
+        }
+
+        nav ul li {
+            list-style: none;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #575757;
+        }
+
+        /* Tiêu đề */
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+            margin-top: 40px;
+
+        }
+
+        /* Bảng */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 7px;
+        }
+
+        table td, table th {
+            word-wrap: break-word;
+            max-width: 200px;
+            text-align: left;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table th {
+            background-color: #66CC66;
+        }
+
+        table tr:hover {
+            background-color: #f2f2f2;
+            cursor: pointer;
+        }
+
+        /* Tìm kiếm */
+        #search-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+            margin-right:50px;
+        }
+
+        #search-container input {
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width:300px;
+            margin-right: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        #search-container button {
+            padding: 8px 16px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+
+        }
+
+        /* Nút thêm và sắp xếp */
+        .button-group {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 20px;
+
+        }
+
+        .add-button {
+            padding: 8px 16px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+
+        /* Phân trang */
+        #pagination {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        #pagination button {
+            padding: 8px 16px;
+            margin: 0 5px;
+            border-radius: 4px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+
+        nav ul li {
+    position: relative; /* Để đảm bảo menu con hiển thị đúng */
+}
+
+nav ul li .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    min-width: auto; /* Chiều rộng tối thiểu tự động theo nội dung */
+    background: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    border-radius: 4px;
+    white-space: nowrap; /* Không xuống dòng */
+}
+
+nav ul li:hover .dropdown-menu {
+    width: auto;
+    display: block; /* Hiển thị menu con khi hover */
+}
+
+nav ul li .dropdown-menu li {
+    width: auto;
+    margin: 0;
+}
+
+nav ul li .dropdown-menu li a {
+    width: auto;
+    padding: 10px 15px;
+    color: #333;
+    display: block;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+nav ul li .dropdown-menu li a:hover {
+    background-color: #575757;
+    color: white;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 14px;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
