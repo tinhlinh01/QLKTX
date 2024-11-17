@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách phòng</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">Thống kê</a></li>
+                <li><a href="./dsnha.html">Danh sách nhà</a></li>
+                <li><a href="./room.html">Phòng</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle">Khách thuê</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="./hopdong.html">Danh sách hợp đồng</a></li>
+                        <li><a href="./khachthue.html">Danh sách khách thuê</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="selectHouse" class="form-label">Nhà</label>
+                    <select id="selectHouse" class="form-select" onchange="showRooms()">
+                        <option selected>Chọn nhà</option>
+                        <option value="1">Nhà 1</option>
+                        <option value="2">Nhà 2</option>
+                        <option value="3">Nhà 3</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Table Displaying Rooms -->
+            <div id="roomTableContainer" style="display:none; margin-top: 20px;">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Số Phòng</th>
+                            <th>Số Lượng</th>
+                            <th>Tình Trạng</th>
+                            <th>Hành Động</th>
+                        </tr>
+                    </thead>
+                    <tbody id="roomTableBody">
+                        <!-- Room data will be inserted here dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Itro.vn - Hotline: 0868987355</p>
+    </footer>
+
+    <script>
+        function showRooms() {
+            const selectHouse = document.getElementById('selectHouse');
+            const roomTableContainer = document.getElementById('roomTableContainer');
+            const roomTableBody = document.getElementById('roomTableBody');
+            const selectedHouse = selectHouse.value;
+
+            // Sample room data based on house selection
+            const rooms = {
+                '1': [
+                    { roomNumber: '101', quantity: 2, status: 'Đang sử dụng' },
+                    { roomNumber: '102', quantity: 1, status: 'Trống' }
+                ],
+                '2': [
+                    { roomNumber: '201', quantity: 3, status: 'Trống' },
+                    { roomNumber: '202', quantity: 1, status: 'Đang sử dụng' }
+                ],
+                '3': [
+                    { roomNumber: '301', quantity: 2, status: 'Trống' },
+                    { roomNumber: '302', quantity: 1, status: 'Đang sử dụng' }
+                ]
+            };
+
+            roomTableBody.innerHTML = ''; // Clear previous rows
+
+            if (selectedHouse && rooms[selectedHouse]) {
+                roomTableContainer.style.display = 'block';
+                rooms[selectedHouse].forEach(room => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${room.roomNumber}</td>
+                        <td>${room.quantity}</td>
+                        <td>${room.status}</td>
+                        <td>
+                            <button class="btn btn-edit" onclick="editRoom('${room.roomNumber}')">Sửa</button>
+                            <button class="btn btn-delete" onclick="deleteRoom('${room.roomNumber}')">Xóa</button>
+                        </td>
+                    `;
+                    roomTableBody.appendChild(row);
+                });
+            } else {
+                roomTableContainer.style.display = 'none';
+            }
+        }
+
+        function editRoom(roomNumber) {
+            alert(`Chỉnh sửa phòng ${roomNumber}`);
+        }
+
+        function deleteRoom(roomNumber) {
+            if (confirm(`Bạn chắc chắn muốn xóa phòng ${roomNumber}?`)) {
+                alert(`Phòng ${roomNumber} đã được xóa`);
+                showRooms(); // Refresh the table after deletion
+            }
+        }
+    </script>
+</body>
+</html>

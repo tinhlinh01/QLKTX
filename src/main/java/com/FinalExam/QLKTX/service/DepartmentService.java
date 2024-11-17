@@ -29,7 +29,7 @@ public class DepartmentService {
     }
 
     public Department updateDepartment(UpdateDepartmentRequest request){
-        Department department = departmentRepository.findById(request.deprtmentId).orElseThrow(()->new RuntimeException());
+        Department department = departmentRepository.findById(request.departmentId).orElseThrow(()->new RuntimeException());
 
         department.setDepartmentName(department.getDepartmentName());
         department.setDepartmentAddress(department.getDepartmentAddress());
